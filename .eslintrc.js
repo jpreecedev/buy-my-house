@@ -1,6 +1,18 @@
 const paths = require("./config/paths")
 
 module.exports = {
+  parser: "babel-eslint",
+  parserOptions: {
+    ecmaVersion: 7,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+      modules: true
+    }
+  },
+  env: {
+    browser: true
+  },
   extends: [
     "prettier",
     "prettier/react",
@@ -15,11 +27,5 @@ module.exports = {
         paths: paths.resolveModules
       }
     }
-  },
-  rules: {
-    "import/named": 0,
-    "import/no-unassigned-import": 0,
-    "import/no-named-as-default-member": 0,
-    "prettier/prettier": "error"
   }
 }
