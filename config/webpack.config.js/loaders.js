@@ -1,8 +1,8 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const generateSourceMap = process.env.OMIT_SOURCEMAP === "true" ? false : true
 
-const cssRegex = /\.css$/
-const cssModuleRegex = /\.module\.css$/
+const cssRegex = /\.scss$/
+const cssModuleRegex = /\.module\.scss$/
 
 const babelLoader = {
   test: /\.(js|jsx|mjs)$/,
@@ -22,7 +22,13 @@ const cssModuleLoaderClient = {
         modules: true,
         importLoaders: 1,
         sourceMap: generateSourceMap,
-        localIdentName: "[name]__[local]--[hash:base64:5]"
+        localIdentName: "[name]__[local]___[hash:base64:5]"
+      }
+    },
+    {
+      loader: require.resolve("sass-loader"),
+      options: {
+        sourceMap: generateSourceMap
       }
     }
   ]
@@ -43,16 +49,16 @@ const cssModuleLoaderServer = {
         camelCase: true,
         importLoaders: 1,
         modules: true,
-        localIdentName: "[name]__[local]--[hash:base64:5]"
+        localIdentName: "[name]__[local]___[hash:base64:5]"
+      }
+    },
+    {
+      loader: require.resolve("sass-loader"),
+      options: {
+        sourceMap: generateSourceMap
       }
     }
   ]
-}
-
-const cssLoaderServer = {
-  test: cssRegex,
-  exclude: cssModuleRegex,
-  loader: require.resolve("css-loader")
 }
 
 const urlLoaderClient = {
@@ -113,7 +119,6 @@ const server = [
     oneOf: [
       babelLoader,
       cssModuleLoaderServer,
-      cssLoaderServer,
       urlLoaderServer,
       fileLoaderServer
     ]

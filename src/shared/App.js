@@ -1,7 +1,7 @@
 import * as React from "react"
 import Helmet from "react-helmet"
 import Features from "./components/Features"
-import css from "./App.module.css"
+import css from "./App.module.scss"
 
 class App extends React.PureComponent {
   render() {

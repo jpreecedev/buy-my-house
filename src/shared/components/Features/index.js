@@ -1,15 +1,15 @@
 import * as React from "react"
-import css from "./Features.module.css"
+import styles from "./Features.module.scss"
 
 const Features = () => (
   <>
     <h2>Features</h2>
-    <ul className={css.wrapper}>
-      <li className={css.hot}>Webpack 4</li>
-      <li className={css.hot}>Babel 7</li>
-      <li className={css.hot}>ESLint 5</li>
-      <li className={css.hot}>Flow Type</li>
-      <li className={css.react}>React 16.6</li>
+    <ul className={styles.wrapper}>
+      <li className={styles.hot}>Webpack 4</li>
+      <li className={styles.hot}>Babel 7</li>
+      <li className={styles.hot}>ESLint 5</li>
+      <li className={styles.hot}>Flow Type</li>
+      <li className={styles.react}>React 16.6</li>
       <li>React Router 4</li>
       <li>React Helmet</li>
       <li>Express Webserver + Server Side Prerendering</li>
