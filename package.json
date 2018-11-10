@@ -87,5 +87,8 @@
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-node-externals": "^1.7.2",
     "write-file-webpack-plugin": "^4.4.1"
+  },
+  "peerDependencies": {
+    "lodash": "^4.17.11"
   }
 }
