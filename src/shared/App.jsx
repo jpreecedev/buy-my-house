@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+
 import * as React from "react"
 
 import Layout from "./components/Layout"

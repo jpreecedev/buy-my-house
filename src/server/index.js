@@ -1,4 +1,5 @@
-// import React from 'react';
+/* eslint-disable no-console */
+
 import express from "express"
 import cors from "cors"
 import path from "path"
@@ -37,8 +38,8 @@ app.use(
 app.use(serverRender())
 
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  return res.status(404).json({
+app.use((err, req, res, next) =>
+  res.status(404).json({
     status: "error",
     message: err.message,
     stack:
@@ -58,7 +59,7 @@ app.use((err, req, res, next) => {
           )
         )
   })
-})
+)
 
 app.listen(process.env.PORT || 8500, () => {
   console.log(

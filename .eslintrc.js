@@ -13,19 +13,16 @@ module.exports = {
   env: {
     browser: true
   },
-  extends: [
-    "prettier",
-    "prettier/react",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:prettier/recommended"
-  ],
-  plugins: ["babel", "import", "prettier"],
+  extends: ["airbnb", "prettier"],
   settings: {
     "import/resolver": {
       node: {
         paths: paths.resolveModules
       }
     }
+  },
+  rules: {
+    "react/prop-types": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }

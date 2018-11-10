@@ -9,7 +9,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development node scripts/start.js",
     "build": "cross-env NODE_ENV=production node scripts/build.js",
-    "lint": "eslint \"./src/**/*.{js,jsx}\" --fix",
+    "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
   },
   "moduleRoots": [
