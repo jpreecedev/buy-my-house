@@ -11,10 +11,7 @@ const serverRenderer = () => (req, res) => {
         <Provider store={req.store}>
             <Router location={req.url} context={{}}>
                 <IntlProvider>
-                    <div>
-                        Fuck <br />
-                        <App />
-                    </div>
+                    <App />
                 </IntlProvider>
             </Router>
         </Provider>

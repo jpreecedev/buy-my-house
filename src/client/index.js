@@ -19,10 +19,7 @@ hydrate(
     <Provider store={store}>
         <Router history={browserHistory}>
             <IntlProvider>
-                <div>
-                    Fuck <br />
-                    <App />
-                </div>
+                <App />
             </IntlProvider>
         </Router>
     </Provider>,

@@ -9,8 +9,6 @@
 -   [Usage](#usage)
 -   [Tricks](#tricks)
     -   [Client side version (opt-in)](#client-side-version-opt-in)
-    -   [Component scaffolding using plop](#client-side-version-opt-in)
-    -   [📕 Storybook support](#-storybook-support)
     -   [Keep your project up to date](#keep-your-project-up-to-date)
     -   [Avoid source map generation for faster builds](#avoid-source-map-generation-for-faster-builds)
     -   [Change the port of the dev environment](#change-the-port-of-the-dev-environment)
@@ -47,12 +45,10 @@ This project has out-of-the-box support for the following things:
     -   🔥 Prettier
     -   ✅ Server side prerendering with Express
     -   ✅ Hot Module Reloading (HMR)
-    -   ✅ Jest 23
     -   ✅ CSS Modules
     -   ✅ PostCSS
     -   ✅ Precommit hooks via lint-staged + Husky
     -   ✅ Optional static deployment without the need for Node.js on the server
-    -   📕 Support for [Storybook](https://storybook.js.org/) (>= 4.0.0)
 
 *   Libs and Dependencies
     -   ⚛ React 16.6
@@ -84,18 +80,6 @@ Starts the app in development mode: creates a new client and server dev build us
 
 Creates a new build, optimized for production. Does **not** start a dev server or anything else.
 
-#### `yarn test`
-
-Run all tests using jest.
-
-#### `yarn test:update`
-
-Update all Jest snapshots (if there are any)
-
-#### `yarn plop`
-
-Run plop to create new React components or Redux reducers via CLI
-
 ## Tricks
 
 ### Client side version (opt-in)
@@ -103,20 +87,6 @@ Run plop to create new React components or Redux reducers via CLI
 Beginning with v1.3.0, a **static** `index.html` is also generated and written to your `clientBuild` directory. You are now able to deploy the `build/client` directory to a static webhost (such as Netlify or AWS S3) and serve your application from there!
 
 For the generation of the `index.html` the server side build gets started right after building, a headless Chrome then visits the site and writes the content of the server side response to your client directory. So you still need the `src/server` directory and the server side build but you're now flexible and can decide on your own whether you want to have the full server side experience or only deploy your completely static app somewhere.
-
-### Component scaffolding using plop
-
-Along with this starter kit comes `plop` - a great command line tool to keep the structure of your Redux components and Redux reducers consistent. Run `yarn plop` (or `npm run plop`) to have components and Redux reducers created for you automatically! Just enter a name, answer a few questions and you're ready to go! You can of course adjust everything to your needs. All Plop templates can be found in the `config/plop` directory.
-
-### 📕 Storybook support
-
-I've successfully tested Storybook and it integrates seamlessly and without any issues into this setup. If you want to add Storybook to your project, install Storybook `^4.0.0` and run `getstorybook` to have the basic setup created for you. You must then replace all the content in `.storybook/webpack.config.js` with the following line:
-
-```js
-module.exports = require('../config/webpack.config.js/storybook');
-```
-
-Afterwards you should be able to run `yarn storybook` to start the Storybook Dev Server.
 
 ### Keep your project up to date
 
@@ -165,7 +135,6 @@ Then you can use it in JSX like `<div><Logo /></div>`.
 -   [x] Improve server side template
 -   [x] Add (and use) `react-helmet`
 -   [ ] Add/improve server side chunk loading
--   [x] Add test setup using Jest
 -   [ ] Add Service Worker
 -   [ ] Add `optimize-css-assets-webpack-plugin` and `postcss-safe-parser` similar to how CRA 2 is doing it
 -   [x] Modify ~~`svg-loader`~~ `babel-loader` so SVGs can be imported as React component (see CRA 2)
