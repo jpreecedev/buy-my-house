@@ -37,7 +37,12 @@ const cssModuleLoaderClient = {
 const cssLoaderClient = {
   test: cssRegex,
   exclude: cssModuleRegex,
-  use: [require.resolve("css-hot-loader"), MiniCssExtractPlugin.loader]
+  use: [
+    require.resolve("css-hot-loader"),
+    MiniCssExtractPlugin.loader,
+    require.resolve("css-loader"),
+    require.resolve("sass-loader")
+  ]
 }
 
 const cssModuleLoaderServer = {

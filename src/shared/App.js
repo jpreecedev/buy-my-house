@@ -1,26 +1,28 @@
 import * as React from "react"
-import Helmet from "react-helmet"
-import Features from "./components/Features"
-import css from "./App.module.scss"
+
+import Layout from "./components/Layout"
 
 class App extends React.PureComponent {
+  state = {
+    message: "Hello, World!"
+  }
+
+  showMessage = () => {
+    const { message } = this.state
+    alert(message)
+  }
+
   render() {
     return (
-      <div className={css.wrapper}>
-        <Helmet
-          defaultTitle="React SSR Starter"
-          titleTemplate="%s – React SSR Starter"
-        />
-
-        <h1>React + Express – SSR</h1>
-
-        <Features />
-
-        <h2>Hello</h2>
-        <p>
-          <button onClick={() => alert("clicked!")}>Click me</button>
-        </p>
-      </div>
+      <Layout>
+        <h1>
+          A bare bones React boilerplate, featuring Webpack 4, React, Redux,
+          Jest, and Babel 7
+        </h1>
+        <button type="button" className="button" onClick={this.showMessage}>
+          Show me a message
+        </button>
+      </Layout>
     )
   }
 }
