@@ -7,7 +7,6 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 const paths = {
     clientBuild: resolveApp('build/client'),
     serverBuild: resolveApp('build/server'),
-    dotenv: resolveApp('.env'),
     src: resolveApp('src'),
     srcClient: resolveApp('src/client'),
     srcServer: resolveApp('src/server'),

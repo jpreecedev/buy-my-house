@@ -1,23 +1,20 @@
+@charset "UTF-8";
 .wrapper {
-    padding: 0;
-
-    li {
-        list-style: none;
-        padding: 4px 0;
-
-        &:before {
-            content: '✅';
-            display: inline-block;
-            min-width: 28px;
-            text-align: center;
-        }
-
-        &.hot:before {
-            content: '🔥';
-        }
-
-        &.react:before {
-            content: '⚛';
-        }
-    }
+  padding: 0;
+}
+.wrapper li {
+  list-style: none;
+  padding: 4px 0;
+}
+.wrapper li:before {
+  content: "✅";
+  display: inline-block;
+  min-width: 28px;
+  text-align: center;
+}
+.wrapper li.hot:before {
+  content: "🔥";
+}
+.wrapper li.react:before {
+  content: "⚛";
 }

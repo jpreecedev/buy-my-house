@@ -8,8 +8,6 @@ import bodyParser from 'body-parser';
 import serverRender from './render';
 import paths from '../../config/paths';
 
-require('dotenv').config();
-
 const app = express();
 
 // Use Nginx or Apache to serve static assets in production or remove the if() around the following

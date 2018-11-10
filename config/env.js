@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const paths = require('./paths');
 
 delete require.cache[require.resolve('./paths')];
 
@@ -9,22 +8,6 @@ if (!process.env.NODE_ENV) {
         'The process.env.NODE_ENV environment variable is required but was not specified.'
     );
 }
-
-// https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
-const dotenvFiles = [
-    `${paths.dotenv}.${process.env.NODE_ENV}.local`,
-    `${paths.dotenv}.${process.env.NODE_ENV}`,
-    process.env.NODE_ENV !== 'test' && `${paths.dotenv}.local`,
-    paths.dotenv,
-].filter(Boolean);
-
-dotenvFiles.forEach((dotenvFile) => {
-    if (fs.existsSync(dotenvFile)) {
-        require('dotenv').config({
-            path: dotenvFile,
-        });
-    }
-});
 
 const appDirectory = fs.realpathSync(process.cwd());
 process.env.NODE_PATH = (process.env.NODE_PATH || '')

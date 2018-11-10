@@ -11,11 +11,9 @@ const Features = () => (
             <li className={css.hot}>Flow Type</li>
             <li className={css.react}>React 16.6</li>
             <li>React Router 4</li>
-            <li>Reselect</li>
             <li>React Helmet</li>
             <li>Express Webserver + Server Side Prerendering</li>
             <li>CSS Modules</li>
-            <li>PostCSS</li>
             <li>HMR (buggy, see Readme)</li>
         </ul>
     </>

@@ -39,29 +39,13 @@ const cssModuleLoaderClient = {
                 localIdentName: '[name]__[local]--[hash:base64:5]',
             },
         },
-        {
-            loader: require.resolve('postcss-loader'),
-            options: {
-                sourceMap: generateSourceMap,
-            },
-        },
     ],
 };
 
 const cssLoaderClient = {
     test: cssRegex,
     exclude: cssModuleRegex,
-    use: [
-        require.resolve('css-hot-loader'),
-        MiniCssExtractPlugin.loader,
-        require.resolve('css-loader'),
-        {
-            loader: require.resolve('postcss-loader'),
-            options: {
-                sourceMap: generateSourceMap,
-            },
-        },
-    ],
+    use: [require.resolve('css-hot-loader'), MiniCssExtractPlugin.loader],
 };
 
 const cssModuleLoaderServer = {
@@ -74,12 +58,6 @@ const cssModuleLoaderServer = {
                 importLoaders: 1,
                 modules: true,
                 localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-        },
-        {
-            loader: require.resolve('postcss-loader'),
-            options: {
-                sourceMap: generateSourceMap,
             },
         },
     ],
