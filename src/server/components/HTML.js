@@ -1,25 +1,16 @@
-// @flow
 /* eslint-disable react/no-danger */
 import React from 'react';
 import Helmet from 'react-helmet';
 
-type PropsT = {
-    children: *,
-    css: string[],
-    scripts: string[],
-    state: string,
-};
-
-export default class HTML extends React.Component<PropsT> {
+export default class HTML extends React.Component {
     static defaultProps = {
         css: [],
         scripts: [],
-        state: '{}',
     };
 
     render() {
         const head = Helmet.renderStatic();
-        const { children, scripts, css, state } = this.props;
+        const { children, scripts, css } = this.props;
         return (
             <html lang="">
                 <head>
@@ -33,11 +24,6 @@ export default class HTML extends React.Component<PropsT> {
                     {css.map((href) => {
                         return <link key={href} rel="stylesheet" href={href} />;
                     })}
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `window.__PRELOADED_STATE__ = ${state}`,
-                        }}
-                    />
                 </head>
                 <body>
                     <div id="app" dangerouslySetInnerHTML={{ __html: children }} />

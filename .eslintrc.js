@@ -6,13 +6,12 @@ module.exports = {
         'wiremore/react',
         'prettier',
         'prettier/react',
-        'plugin:flowtype/recommended',
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:prettier/recommended',
         'plugin:security/recommended',
     ],
-    plugins: ['babel', 'import', 'prettier', 'flowtype', 'security'],
+    plugins: ['babel', 'import', 'prettier', 'security'],
     settings: {
         'import/resolver': {
             node: {
