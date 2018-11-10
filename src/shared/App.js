@@ -16,8 +16,8 @@ class App extends React.PureComponent {
     return (
       <Layout>
         <h1>
-          A bare bones React boilerplate, featuring Webpack 4, React, Redux,
-          Jest, and Babel 7
+          A bare bones React boilerplate with Server Side Rendering (SSR) and
+          Hot Module Reloading (HMR)
         </h1>
         <button type="button" className="button" onClick={this.showMessage}>
           Show me a message
