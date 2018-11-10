@@ -1,126 +1,126 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const generateSourceMap = process.env.OMIT_SOURCEMAP === 'true' ? false : true;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const generateSourceMap = process.env.OMIT_SOURCEMAP === "true" ? false : true
 
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
+const cssRegex = /\.css$/
+const cssModuleRegex = /\.module\.css$/
 
 const babelLoader = {
-    test: /\.(js|jsx|mjs)$/,
-    exclude: /node_modules/,
-    loader: require.resolve('babel-loader'),
-};
+  test: /\.(js|jsx|mjs)$/,
+  exclude: /node_modules/,
+  loader: require.resolve("babel-loader")
+}
 
 const cssModuleLoaderClient = {
-    test: cssModuleRegex,
-    use: [
-        require.resolve('css-hot-loader'),
-        MiniCssExtractPlugin.loader,
-        {
-            loader: require.resolve('css-loader'),
-            options: {
-                camelCase: true,
-                modules: true,
-                importLoaders: 1,
-                sourceMap: generateSourceMap,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-        },
-    ],
-};
+  test: cssModuleRegex,
+  use: [
+    require.resolve("css-hot-loader"),
+    MiniCssExtractPlugin.loader,
+    {
+      loader: require.resolve("css-loader"),
+      options: {
+        camelCase: true,
+        modules: true,
+        importLoaders: 1,
+        sourceMap: generateSourceMap,
+        localIdentName: "[name]__[local]--[hash:base64:5]"
+      }
+    }
+  ]
+}
 
 const cssLoaderClient = {
-    test: cssRegex,
-    exclude: cssModuleRegex,
-    use: [require.resolve('css-hot-loader'), MiniCssExtractPlugin.loader],
-};
+  test: cssRegex,
+  exclude: cssModuleRegex,
+  use: [require.resolve("css-hot-loader"), MiniCssExtractPlugin.loader]
+}
 
 const cssModuleLoaderServer = {
-    test: cssModuleRegex,
-    use: [
-        {
-            loader: require.resolve('css-loader/locals'),
-            options: {
-                camelCase: true,
-                importLoaders: 1,
-                modules: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-        },
-    ],
-};
+  test: cssModuleRegex,
+  use: [
+    {
+      loader: require.resolve("css-loader/locals"),
+      options: {
+        camelCase: true,
+        importLoaders: 1,
+        modules: true,
+        localIdentName: "[name]__[local]--[hash:base64:5]"
+      }
+    }
+  ]
+}
 
 const cssLoaderServer = {
-    test: cssRegex,
-    exclude: cssModuleRegex,
-    loader: require.resolve('css-loader'),
-};
+  test: cssRegex,
+  exclude: cssModuleRegex,
+  loader: require.resolve("css-loader")
+}
 
 const urlLoaderClient = {
-    test: /\.(png|jpe?g|gif|svg)$/,
-    loader: require.resolve(require.resolve('url-loader')),
-    options: {
-        limit: 2048,
-        name: 'assets/[name].[hash:8].[ext]',
-    },
-};
+  test: /\.(png|jpe?g|gif|svg)$/,
+  loader: require.resolve(require.resolve("url-loader")),
+  options: {
+    limit: 2048,
+    name: "assets/[name].[hash:8].[ext]"
+  }
+}
 
 const urlLoaderServer = {
-    ...urlLoaderClient,
-    options: {
-        ...urlLoaderClient.options,
-        emitFile: false,
-    },
-};
+  ...urlLoaderClient,
+  options: {
+    ...urlLoaderClient.options,
+    emitFile: false
+  }
+}
 
 const fileLoaderClient = {
-    exclude: [/\.(js|css|mjs|html|json)$/],
-    use: [
-        {
-            loader: require.resolve('file-loader'),
-            options: {
-                name: 'assets/[name].[hash:8].[ext]',
-            },
-        },
-    ],
-};
+  exclude: [/\.(js|css|mjs|html|json)$/],
+  use: [
+    {
+      loader: require.resolve("file-loader"),
+      options: {
+        name: "assets/[name].[hash:8].[ext]"
+      }
+    }
+  ]
+}
 
 const fileLoaderServer = {
-    exclude: [/\.(js|css|mjs|html|json)$/],
-    use: [
-        {
-            loader: require.resolve('file-loader'),
-            options: {
-                name: 'assets/[name].[hash:8].[ext]',
-                emitFile: false,
-            },
-        },
-    ],
-};
+  exclude: [/\.(js|css|mjs|html|json)$/],
+  use: [
+    {
+      loader: require.resolve("file-loader"),
+      options: {
+        name: "assets/[name].[hash:8].[ext]",
+        emitFile: false
+      }
+    }
+  ]
+}
 
 const client = [
-    {
-        oneOf: [
-            babelLoader,
-            cssModuleLoaderClient,
-            cssLoaderClient,
-            urlLoaderClient,
-            fileLoaderClient,
-        ],
-    },
-];
+  {
+    oneOf: [
+      babelLoader,
+      cssModuleLoaderClient,
+      cssLoaderClient,
+      urlLoaderClient,
+      fileLoaderClient
+    ]
+  }
+]
 const server = [
-    {
-        oneOf: [
-            babelLoader,
-            cssModuleLoaderServer,
-            cssLoaderServer,
-            urlLoaderServer,
-            fileLoaderServer,
-        ],
-    },
-];
+  {
+    oneOf: [
+      babelLoader,
+      cssModuleLoaderServer,
+      cssLoaderServer,
+      urlLoaderServer,
+      fileLoaderServer
+    ]
+  }
+]
 
 module.exports = {
-    client,
-    server,
-};
+  client,
+  server
+}
