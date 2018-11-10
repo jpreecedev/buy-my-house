@@ -15,7 +15,7 @@ class App extends React.PureComponent {
 
                 <h2>Hello</h2>
                 <p>
-                    <button onClick={() => alert('clicked!')}>Click me</button>
+                    <button onClick={() => alert('clicked!')}>Balls me</button>
                 </p>
             </div>
         );

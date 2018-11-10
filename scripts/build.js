@@ -10,7 +10,6 @@ const { choosePort } = require('react-dev-utils/WebpackDevServerUtils');
 const generateStaticHTML = async () => {
     const nodemon = require('nodemon');
     const fs = require('fs');
-    const puppeteer = require('puppeteer');
     const port = await choosePort('localhost', 8505);
 
     process.env.PORT = port;
@@ -18,21 +17,6 @@ const generateStaticHTML = async () => {
     const script = nodemon({
         script: `${paths.serverBuild}/server.js`,
         ignore: ['*'],
-    });
-
-    script.on('start', async () => {
-        try {
-            const browser = await puppeteer.launch();
-            const page = await browser.newPage();
-            await page.goto(`http://localhost:${port}`);
-            const pageContent = await page.content();
-            fs.writeFileSync(`${paths.clientBuild}/index.html`, pageContent);
-            await browser.close();
-            script.emit('quit');
-        } catch (err) {
-            script.emit('quit');
-            console.log(err);
-        }
     });
 
     script.on('exit', (code) => {

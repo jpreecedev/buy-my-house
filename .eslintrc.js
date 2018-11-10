@@ -2,16 +2,13 @@ const paths = require('./config/paths');
 
 module.exports = {
     extends: [
-        'wiremore',
-        'wiremore/react',
         'prettier',
         'prettier/react',
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:prettier/recommended',
-        'plugin:security/recommended',
     ],
-    plugins: ['babel', 'import', 'prettier', 'security'],
+    plugins: ['babel', 'import', 'prettier'],
     settings: {
         'import/resolver': {
             node: {
