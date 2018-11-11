@@ -29,7 +29,7 @@ let config = {
       "window.React": "React"
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin({ name: "HMR" })
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
 

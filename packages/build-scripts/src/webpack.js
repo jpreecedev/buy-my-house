@@ -26,16 +26,6 @@ const processPackage = (packagePath, configPath) =>
       libraryTarget: "commonjs2"
     }
 
-    const hmrPlugin = config.plugins.find(
-      plugin => plugin.options && plugin.options.name === "HMR"
-    )
-    if (hmrPlugin) {
-      const index = config.plugins.indexOf(hmrPlugin)
-      if (index > -1) {
-        config.plugins.splice(index, 1)
-      }
-    }
-
     process.chdir(packagePath)
 
     config.entry = {

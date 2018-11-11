@@ -6,7 +6,8 @@ const isDevelopment = process.env.NODE_ENV !== "production"
 module.exports = {
   mode: isDevelopment ? "development" : "production",
   output: {
-    filename: isDevelopment ? "[name].js" : "[name].[hash].js"
+    filename: isDevelopment ? "[name].js" : "[name].[hash].js",
+    globalObject: "this"
   },
   module: {
     rules: [
