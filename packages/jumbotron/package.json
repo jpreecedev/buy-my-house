@@ -1,0 +1,18 @@
+{
+  "name": "@buy-my-house/jumbotron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/client/main.js",
+  "scripts": {
+    "build:dev": "cross-env NODE_ENV=development build-scripts -br -w ../../config/webpack.config.js/package.config.js",
+    "start": "cross-env NODE_ENV=development build-scripts -srw ../../config/webpack.config.js/package.config.js",
+    "lint": "eslint ./src"
+  },
+  "keywords": [],
+  "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
+  "license": "MIT",
+  "dependencies": {
+    "@buy-my-house/build-scripts": "^1.0.0",
+    "@buy-my-house/styling": "^1.0.0"
+  }
+}
