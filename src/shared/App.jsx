@@ -1,9 +1,9 @@
 import * as React from "react"
+import "@buy-my-house/styling/dist/base.css"
 
 import { Header } from "@buy-my-house/header"
 import { Jumbotron } from "@buy-my-house/jumbotron"
-
-import "@buy-my-house/styling/dist/base.css"
+import { Results } from "@buy-my-house/results"
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
       <main role="main">
         <Jumbotron />
       </main>
+      <Results />
     </>
   )
 }

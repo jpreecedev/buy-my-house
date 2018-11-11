@@ -36,6 +36,7 @@
   "dependencies": {
     "@buy-my-house/header": "^1.0.0",
     "@buy-my-house/jumbotron": "^1.0.0",
+    "@buy-my-house/results": "^1.0.0",
     "@buy-my-house/styling": "^1.0.0",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
