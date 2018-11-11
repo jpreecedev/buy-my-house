@@ -107,7 +107,6 @@ const start = configPath => {
   const configs = require(configPath)
   const serverConfig = getServerConfig(configs)
 
-  console.log("setting entry")
   serverConfig.entry = [
     resolve("./src/index.jsx"),
     `webpack-dev-server/client?http://localhost:${serverConfig.devServer.port}`

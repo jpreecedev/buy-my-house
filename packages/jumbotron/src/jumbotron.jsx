@@ -1,4 +1,5 @@
 import * as React from "react"
+import { hot } from "react-hot-loader"
 import "./styles.scss"
 
 function Jumbotron() {
@@ -24,4 +25,4 @@ function Jumbotron() {
   )
 }
 
-export default Jumbotron
+export default hot(module)(Jumbotron)
