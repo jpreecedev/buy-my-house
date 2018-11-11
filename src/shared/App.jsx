@@ -4,6 +4,7 @@ import "@buy-my-house/styling/dist/base.css"
 import { Header } from "@buy-my-house/header"
 import { Jumbotron } from "@buy-my-house/jumbotron"
 import { Results } from "@buy-my-house/results"
+import { Footer } from "@buy-my-house/footer"
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
       <Header />
       <main role="main">
         <Jumbotron />
+        <Results />
       </main>
-      <Results />
+      <Footer />
     </>
   )
 }
