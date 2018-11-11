@@ -18,50 +18,6 @@ const isEnabled = packagePath => {
   return require(packageJsonPath).enabled
 }
 
-const processPackage = (packagePath, configPath) =>
-  new Promise((resolvePromise, reject) => {
-    const config = require(configPath)
-    config.output = {
-      ...config.output,
-      libraryTarget: "commonjs2"
-    }
-
-    process.chdir(packagePath)
-
-    config.entry = {
-      main: resolve("./main.js")
-    }
-
-    const compiler = Webpack(config)
-    compiler.run((err, stats) => {
-      let messages
-      if (err) {
-        if (!err.message) {
-          return reject(err)
-        }
-        messages = {
-          errors: [err.message],
-          warnings: []
-        }
-      } else {
-        messages = stats.toJson({ all: false, warnings: true, errors: true })
-      }
-      if (messages.errors.length) {
-        if (messages.errors.length > 1) {
-          messages.errors.length = 1
-        }
-        return reject(new Error(messages.errors.join("\n\n")))
-      }
-
-      const resolveArgs = {
-        stats,
-        warnings: messages.warnings
-      }
-
-      return resolvePromise(resolveArgs)
-    })
-  })
-
 const initialize = program => {
   const configFile = join(process.cwd(), program.webpackConfig)
   if (!configFile) {
@@ -72,33 +28,100 @@ const initialize = program => {
   return { configFile }
 }
 
-const build = (configPath, root) => {
-  const config = require(configPath)
+const build = (configPath, name, root) =>
+  new Promise((resolvePromise, reject) => {
+    const config = require(configPath)
 
-  if (!root) {
-    config.output = {
-      ...config.output,
-      libraryTarget: "commonjs2"
+    if (!root) {
+      config.output = {
+        ...config.output,
+        libraryTarget: "commonjs2"
+      }
     }
 
-    config.entry = {
-      main: resolve("./main.js")
-    }
-  }
+    config.output.filename = config.output.filename.replace("[name]", name)
 
-  Webpack(config, (err, stats) => {
-    process.stdout.write(stats.toString())
+    config.plugins.forEach(plugin => {
+      if (plugin.options && plugin.options.filename) {
+        plugin.options.filename = plugin.options.filename.replace(
+          "[name]",
+          name
+        )
+      }
+    })
+
+    Webpack(config, (err, stats) => {
+      if (err) {
+        return reject(err)
+      }
+      process.stdout.write(stats.toString())
+      return resolvePromise()
+    })
   })
-}
+
+const processPackage = (packagePath, configPath, name) =>
+  new Promise((resolvePromise, reject) => {
+    build(configPath, name, true).then(() => {
+      const config = require(configPath)
+      config.output = {
+        ...config.output,
+        libraryTarget: "commonjs2"
+      }
+
+      process.chdir(packagePath)
+
+      const path = packagePath.split("/")
+      const packageName = path[path.length - 1]
+
+      config.entry = {
+        [`${packageName}JS`]: resolve(`./dist/${packageName}.bundle.js`),
+        [`${packageName}CSS`]: resolve(`./dist/${packageName}.bundle.css`)
+      }
+
+      const compiler = Webpack(config)
+      compiler.run((err, stats) => {
+        let messages
+        if (err) {
+          if (!err.message) {
+            return reject(err)
+          }
+          messages = {
+            errors: [err.message],
+            warnings: []
+          }
+        } else {
+          messages = stats.toJson({ all: false, warnings: true, errors: true })
+        }
+        if (messages.errors.length) {
+          if (messages.errors.length > 1) {
+            messages.errors.length = 1
+          }
+          return reject(new Error(messages.errors.join("\n\n")))
+        }
+
+        const resolveArgs = {
+          stats,
+          warnings: messages.warnings
+        }
+
+        return resolvePromise(resolveArgs)
+      })
+    })
+  })
 
 const buildAll = configPath => {
   const packages = sync(join(process.cwd(), "packages/*"))
 
   packages.reduce(
     (promise, packagePath) =>
-      promise.then(
-        () => isEnabled(packagePath) && processPackage(packagePath, configPath)
-      ),
+      promise.then(() => {
+        const path = packagePath.split("/")
+        const packageName = path[path.length - 1]
+        return (
+          isEnabled(packagePath) &&
+          processPackage(packagePath, configPath, packageName)
+        )
+      }),
     Promise.resolve()
   )
 }

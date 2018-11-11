@@ -2,10 +2,10 @@
   "name": "@buy-my-house/results",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/client/main.js",
+  "main": "dist/results.bundle.js",
   "enabled": true,
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development build-scripts -br -w ../../config/webpack.config.js/package.config.js",
+    "build:dev": "cross-env NODE_ENV=development build-scripts -rb results -w ../../config/webpack.config.js/package.config.js",
     "start": "cross-env NODE_ENV=development build-scripts -srw ../../config/webpack.config.js/package.config.js",
     "lint": "eslint ./src"
   },

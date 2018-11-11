@@ -11,7 +11,7 @@ const isDevelopment = process.env.NODE_ENV !== "production"
 let config = {
   target: "web",
   output: {
-    filename: "./client/[name].js"
+    filename: "./[name].bundle.js"
   },
   plugins: [
     new HtmlWebPackPlugin({
@@ -19,8 +19,12 @@ let config = {
       filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: isDevelopment ? "[name].css" : "[name].[hash].css",
-      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
+      filename: isDevelopment
+        ? "[name].bundle.css"
+        : "[name].bundle.[hash].css",
+      chunkFilename: isDevelopment
+        ? "[id].bundle.css"
+        : "[id].bundle.[hash].css"
     }),
     new webpack.ProvidePlugin({
       React: "React",
