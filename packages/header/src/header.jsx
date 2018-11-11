@@ -8,7 +8,7 @@ function Header() {
         <div className="container d-flex justify-content-between">
           <a href="/" className="navbar-brand d-flex align-items-center">
             <House />
-            <strong>Buy My House</strong>
+            <strong>Buy My home</strong>
           </a>
         </div>
       </div>

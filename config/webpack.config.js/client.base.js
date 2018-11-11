@@ -52,5 +52,9 @@ module.exports = {
     reasons: false,
     timings: true,
     version: false
+  },
+  externals: {
+    react: "React",
+    "react-dom": "ReactDOM"
   }
 }
