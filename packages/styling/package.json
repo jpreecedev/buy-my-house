@@ -1,0 +1,12 @@
+{
+  "name": "@buy-my-house/styling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
+  "license": "MIT",
+  "scripts": {
+    "build": "node-sass ./base.scss ./dist/base.css"
+  }
+}

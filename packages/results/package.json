@@ -10,6 +10,7 @@
   "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
   "license": "MIT",
   "dependencies": {
-    "@buy-my-house/build-scripts": "^1.0.0"
+    "@buy-my-house/build-scripts": "^1.0.0",
+    "@buy-my-house/styling": "^1.0.0"
   }
 }

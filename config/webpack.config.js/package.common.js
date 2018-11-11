@@ -65,6 +65,10 @@ module.exports = {
         ]
       },
       {
+        test: /\.css$/,
+        loader: [MiniCssExtractPlugin.loader, "css-loader"]
+      },
+      {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,
         loader: [

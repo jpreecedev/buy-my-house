@@ -11,5 +11,8 @@
   },
   "keywords": [],
   "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@buy-my-house/styling": "^1.0.0"
+  }
 }
