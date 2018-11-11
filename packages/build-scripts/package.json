@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "enabled": false,
   "bin": {
     "build-scripts": "./build-scripts.js"
   },

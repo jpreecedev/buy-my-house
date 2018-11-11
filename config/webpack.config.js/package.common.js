@@ -72,7 +72,7 @@ module.exports = {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,
         loader: [
-          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           "css-loader",
           {
             loader: "sass-loader",
@@ -109,7 +109,7 @@ module.exports = {
     ]
   },
   externals: {
-    react: "React",
-    "react-dom": "ReactDOM"
+    react: "react",
+    "react-dom": "react-dom"
   }
 }

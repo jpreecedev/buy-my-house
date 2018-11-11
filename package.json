@@ -11,9 +11,9 @@
   ],
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=development && build-scripts -a -w ./config/webpack.config.js/packages.config.js && node scripts/start.js",
+    "start": "cross-env NODE_ENV=development && npm run build:packages && build-scripts -a -w ./config/webpack.config.js/package.config.js && node scripts/start.js",
     "build": "cross-env NODE_ENV=development node scripts/build.js",
-    "build:packages": "cross-env NODE_ENV=development && build-scripts -a -w ./config/webpack.config.js/packages.config.js",
+    "build:packages": "cross-env NODE_ENV=development && build-scripts -a -w ./config/webpack.config.js/package.config.js",
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
   },
@@ -34,8 +34,9 @@
   },
   "homepage": "https://github.com/jpreecedev/react-ssr-hmr#readme",
   "dependencies": {
-    "@buy-my-house/jumbotron": "^1.0.0",
     "@buy-my-house/header": "^1.0.0",
+    "@buy-my-house/jumbotron": "^1.0.0",
+    "@buy-my-house/styling": "^1.0.0",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "cors": "^2.8.4",

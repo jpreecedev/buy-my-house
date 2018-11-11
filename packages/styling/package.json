@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "enabled": false,
   "keywords": [],
   "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
   "license": "MIT",

@@ -13,12 +13,27 @@ const getServerConfig = configs => {
   return configs
 }
 
+const isEnabled = packagePath => {
+  const packageJsonPath = join(packagePath, "package.json")
+  return require(packageJsonPath).enabled
+}
+
 const processPackage = (packagePath, configPath) =>
   new Promise((resolvePromise, reject) => {
     const config = require(configPath)
     config.output = {
       ...config.output,
       libraryTarget: "commonjs2"
+    }
+
+    const hmrPlugin = config.plugins.find(
+      plugin => plugin.options && plugin.options.name === "HMR"
+    )
+    if (hmrPlugin) {
+      const index = config.plugins.indexOf(hmrPlugin)
+      if (index > -1) {
+        config.plugins.splice(index, 1)
+      }
     }
 
     process.chdir(packagePath)
@@ -87,11 +102,13 @@ const build = (configPath, root) => {
 }
 
 const buildAll = configPath => {
-  const packages = sync(join(process.cwd(), "src/packages/!(jp-scripts)"))
+  const packages = sync(join(process.cwd(), "packages/*"))
 
   packages.reduce(
     (promise, packagePath) =>
-      promise.then(() => processPackage(packagePath, configPath)),
+      promise.then(
+        () => isEnabled(packagePath) && processPackage(packagePath, configPath)
+      ),
     Promise.resolve()
   )
 }
@@ -100,6 +117,7 @@ const start = configPath => {
   const configs = require(configPath)
   const serverConfig = getServerConfig(configs)
 
+  console.log("setting entry")
   serverConfig.entry = [
     resolve("./src/index.jsx"),
     `webpack-dev-server/client?http://localhost:${serverConfig.devServer.port}`

@@ -1,8 +1,12 @@
 import * as React from "react"
-import * as ReactDOM from "react-dom"
+import { render } from "react-dom"
+import { hot } from "react-hot-loader"
 
 import Header from "./header"
 
 import "@buy-my-house/styling/dist/base.css"
 
-ReactDOM.render(<Header />, document.getElementById("root"))
+const renderComponent = Component =>
+  render(hot(module)(Component), document.getElementById("root"))
+
+renderComponent(<Header />)
