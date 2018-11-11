@@ -6,6 +6,10 @@
   "engines": {
     "node": ">=8.9.0"
   },
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=development node scripts/start.js",
     "build": "cross-env NODE_ENV=production node scripts/build.js",
@@ -29,10 +33,6 @@
   },
   "homepage": "https://github.com/jpreecedev/react-ssr-hmr#readme",
   "dependencies": {
-    "@buy-my-house/header": "^1.0.0",
-    "@buy-my-house/footer": "^1.0.0",
-    "@buy-my-house/results": "^1.0.0",
-    "@buy-my-house/filter": "^1.0.0",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "cors": "^2.8.4",
@@ -58,6 +58,7 @@
     "autoprefixer": "^9.3.1",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "commander": "^2.19.0",
     "cross-env": "^5.2.0",
     "css-hot-loader": "^1.4.1",
     "css-loader": "^1.0.0",
@@ -75,21 +76,27 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^4.0.0",
     "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^4.5.0",
     "lerna": "^3.4.3",
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.10.0",
     "nodemon": "^1.18.3",
+    "path": "^0.12.7",
     "prettier": "^1.15.2",
     "prettier-eslint": "^8.8.2",
     "react-dev-utils": "^6.0.5",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-manifest-plugin": "^2.0.4",
+    "webpack-merge": "^4.1.4",
     "webpack-node-externals": "^1.7.2",
     "write-file-webpack-plugin": "^4.4.1"
   },

@@ -1,12 +1,12 @@
 const webpack = require("webpack")
 const nodemon = require("nodemon")
 const rimraf = require("rimraf")
-const webpackConfig = require("../config/webpack.config.js")(
-  process.env.NODE_ENV || "development"
-)
 const webpackDevMiddleware = require("webpack-dev-middleware")
 const webpackHotMiddleware = require("webpack-hot-middleware")
 const express = require("express")
+const webpackConfig = require("../config/webpack.config.js")(
+  process.env.NODE_ENV || "development"
+)
 const paths = require("../config/paths")
 const { logMessage, compilerPromise } = require("./utils")
 
