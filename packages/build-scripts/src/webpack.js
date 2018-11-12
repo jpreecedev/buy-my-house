@@ -75,7 +75,7 @@ const initialize = program => {
   return { configFile }
 }
 
-const build = (configPath, root) => {
+const build = (configPath, packageName, root) => {
   const config = require(configPath)
 
   if (!root) {
@@ -83,9 +83,12 @@ const build = (configPath, root) => {
       ...config.output,
       libraryTarget: "commonjs2"
     }
-
     config.entry = {
-      main: resolve("./main.js")
+      [`${packageName}`]: resolve("./main.js")
+    }
+  } else {
+    config.entry = {
+      [`${packageName}`]: resolve("./src/index.jsx")
     }
   }
 
