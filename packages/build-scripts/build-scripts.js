@@ -8,7 +8,7 @@ program
   .version("1.0.0")
   .option("-a, --all", "Builds all components")
   .option("-w, --webpack-config [path]", "Webpack Configuration Path")
-  .option("-b, --build [packageName]", "Build Webpack Bundle")
+  .option("-b, --build", "Build Webpack Bundle")
   .option("-r, --root", "Is Root Project")
   .option("-s, --start", "Start Webpack Dev Server")
   .parse(process.argv)
@@ -26,7 +26,7 @@ log(`Using: ${configFile}`)
 if (program.all) {
   buildAll(configFile)
 } else if (program.build) {
-  build(configFile, program.build, program.root)
+  build(configFile, program.root)
 } else if (program.start) {
   start(configFile)
 }
