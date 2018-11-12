@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const { join } = require("path")
 
 const generateSourceMap = process.env.OMIT_SOURCEMAP !== "true"
 

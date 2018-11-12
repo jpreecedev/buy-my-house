@@ -28,8 +28,11 @@ const processPackage = (packagePath, configPath) =>
 
     process.chdir(packagePath)
 
+    const split = packagePath.split("/")
+    const packageName = split[split.length - 1]
+
     config.entry = {
-      main: resolve("./main.js")
+      [`${packageName}`]: resolve("./main.js")
     }
 
     const compiler = Webpack(config)

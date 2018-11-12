@@ -2,7 +2,7 @@
   "name": "@buy-my-house/jumbotron",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/client/main.js",
+  "main": "main.js",
   "enabled": true,
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development build-scripts -br -w ../../config/webpack.config.js/package.config.js",

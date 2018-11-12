@@ -11,7 +11,7 @@ const isDevelopment = process.env.NODE_ENV !== "production"
 let config = {
   target: "web",
   output: {
-    filename: "./client/[name].js"
+    filename: "./[name].js"
   },
   plugins: [
     new HtmlWebPackPlugin({
