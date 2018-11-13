@@ -124,12 +124,17 @@ const buildAll = configPath => {
 const start = (configPath, packageName) => {
   const configs = require(configPath)
   const serverConfig = getServerConfig(configs)
+  const styles = getEntryForStyles(packageName)
 
   serverConfig.entry = [
     resolve("./src/index.jsx"),
-    getEntryForStyles(packageName)[`${packageName}-styles`],
     `webpack-dev-server/client?http://localhost:${serverConfig.devServer.port}`
   ]
+
+  if (styles) {
+    serverConfig.entry.push(styles[`${packageName}-styles`])
+  }
+
   const server = new WebpackDevServer(Webpack(serverConfig), {
     headers: { "Access-Control-Allow-Origin": "*" }
   })
