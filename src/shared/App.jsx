@@ -1,10 +1,11 @@
 import * as React from "react"
-import "@buy-my-house/styling/dist/base.css"
 
-import { Header } from "@buy-my-house/header"
-import { Jumbotron } from "@buy-my-house/jumbotron"
-import { Results } from "@buy-my-house/results"
-import { Footer } from "@buy-my-house/footer"
+// import "../../components/styling/base.scss"
+
+import Header from "../../components/header"
+import Jumbotron from "../../components/jumbotron"
+import Results from "../../components/results"
+import Footer from "../../components/footer"
 
 function App() {
   return (

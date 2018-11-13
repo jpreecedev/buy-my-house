@@ -3,7 +3,6 @@ const nodemon = require("nodemon")
 const rimraf = require("rimraf")
 const webpackDevMiddleware = require("webpack-dev-middleware")
 const webpackHotMiddleware = require("webpack-hot-middleware")
-const { sync } = require("glob")
 const express = require("express")
 const webpackConfig = require("../config/webpack.config.js")(
   process.env.NODE_ENV || "development"
@@ -24,8 +23,7 @@ const start = async () => {
   const [clientConfig, serverConfig] = webpackConfig
   clientConfig.entry.bundle = [
     `webpack-hot-middleware/client?path=http://localhost:${WEBPACK_PORT}/__webpack_hmr`,
-    ...clientConfig.entry.bundle,
-    ...sync(`${paths.packages}/**/src/styles.scss`)
+    ...clientConfig.entry.bundle
   ]
 
   clientConfig.output.hotUpdateMainFilename = "updates/[hash].hot-update.json"
@@ -75,6 +73,7 @@ const start = async () => {
     webpackDevMiddleware(clientCompiler, {
       publicPath: clientConfig.output.publicPath,
       stats: clientConfig.stats,
+      serverSideRender: true,
       watchOptions
     })
   )

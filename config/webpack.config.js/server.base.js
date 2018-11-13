@@ -22,8 +22,8 @@ module.exports = {
   output: {
     path: paths.serverBuild,
     filename: "server.js",
-    publicPath: paths.publicPath
-    // libraryTarget: 'commonjs2',
+    publicPath: paths.publicPath,
+    libraryTarget: "commonjs2"
   },
   resolve: { ...resolvers },
   module: {

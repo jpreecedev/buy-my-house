@@ -1,45 +1,30 @@
 {
-  "name": "react-ssr-hmr",
+  "name": "buy-my-house",
   "version": "1.0.0",
   "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
   "license": "MIT",
   "engines": {
     "node": ">=8.9.0"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=development && npm run build:packages && build-scripts -a -w ./config/webpack.config.js/package.config.js && node scripts/start.js",
-    "build": "cross-env NODE_ENV=development node scripts/build.js",
-    "build:packages": "cross-env NODE_ENV=development && build-scripts -a -w ./config/webpack.config.js/package.config.js",
+    "build": "cross-env NODE_ENV=production node scripts/build.js",
+    "start": "cross-env NODE_ENV=development node scripts/start.js",
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
   },
-  "moduleRoots": [
-    "src/client",
-    "src/server",
-    "src/shared",
-    "src",
-    "node_modules"
-  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jpreecedev/react-ssr-hmr.git"
+    "url": "git+https://github.com/jpreecedev/buy-my-house.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/jpreecedev/react-ssr-hmr/issues"
+    "url": "https://github.com/jpreecedev/buy-my-house/issues"
   },
-  "homepage": "https://github.com/jpreecedev/react-ssr-hmr#readme",
+  "homepage": "https://github.com/jpreecedev/buy-my-house#readme",
   "dependencies": {
-    "@buy-my-house/footer": "^1.0.0",
-    "@buy-my-house/header": "^1.0.0",
-    "@buy-my-house/jumbotron": "^1.0.0",
-    "@buy-my-house/results": "^1.0.0",
-    "@buy-my-house/styling": "^1.0.0",
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.3",
     "chalk": "^2.4.1",
     "cors": "^2.8.4",
     "express": "^4.16.4",
@@ -86,7 +71,6 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^4.5.0",
-    "lerna": "^3.4.3",
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.10.0",
     "nodemon": "^1.18.3",
@@ -94,6 +78,7 @@
     "prettier": "^1.15.2",
     "prettier-eslint": "^8.8.2",
     "react-dev-utils": "^6.0.5",
+    "react-hot-loader": "^4.3.12",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

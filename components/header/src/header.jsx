@@ -1,5 +1,4 @@
 import * as React from "react"
-import { hot } from "react-hot-loader"
 import House from "./house"
 
 function Header() {
@@ -17,4 +16,4 @@ function Header() {
   )
 }
 
-export default hot(module)(Header)
+export default Header
