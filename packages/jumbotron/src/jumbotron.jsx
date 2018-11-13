@@ -1,10 +1,9 @@
 import * as React from "react"
 import { hot } from "react-hot-loader"
-import styles from "./styles.module.scss"
 
 function Jumbotron() {
   return (
-    <section className={`jumbotron text-center ${styles.jumbotron}`}>
+    <section className="jumbotron text-center">
       <div className="container">
         <h1 className="jumbotron-heading">Buy my home</h1>
         <p className="lead text-muted">

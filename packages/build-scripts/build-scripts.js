@@ -10,7 +10,7 @@ program
   .option("-w, --webpack-config [path]", "Webpack Configuration Path")
   .option("-b, --build [packageName]", "Build Webpack Bundle")
   .option("-r, --root", "Is Root Project")
-  .option("-s, --start", "Start Webpack Dev Server")
+  .option("-s, --start [packageName]", "Start Webpack Dev Server")
   .parse(process.argv)
 
 const result = initialize(program)
@@ -28,5 +28,5 @@ if (program.all) {
 } else if (program.build) {
   build(configFile, program.build, program.root)
 } else if (program.start) {
-  start(configFile)
+  start(configFile, program.start)
 }

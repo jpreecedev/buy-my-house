@@ -1,9 +1,8 @@
 import * as React from "react"
-import styles from "./footer.module.scss"
 
 function Footer() {
   return (
-    <footer className={`text-muted ${styles.footer}`}>
+    <footer className="text-muted footer">
       <div className="container">
         <p className="float-right">
           <a href="/">Back to top</a>
@@ -13,14 +12,8 @@ function Footer() {
           yourself!
         </p>
         <p>
-          New to Bootstrap?
-          {' '}
-          <a href="../../">Visit the homepage</a>
-          {' '}
-or read our
-          {" "}
-          <a href="../../getting-started/">getting started guide</a>
-.
+          New to Bootstrap? <a href="../../">Visit the homepage</a> or read our{" "}
+          <a href="../../getting-started/">getting started guide</a>.
         </p>
       </div>
     </footer>

@@ -11,6 +11,7 @@ const paths = {
   srcClient: resolveApp("src/client"),
   srcServer: resolveApp("src/server"),
   srcShared: resolveApp("src/shared"),
+  packages: resolveApp("packages"),
   publicPath: "/static/"
 }
 

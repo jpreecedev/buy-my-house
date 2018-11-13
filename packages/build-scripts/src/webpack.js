@@ -4,7 +4,17 @@ const Webpack = require("webpack")
 const WebpackDevServer = require("webpack-dev-server")
 const { join, resolve } = require("path")
 const { sync } = require("glob")
+const { existsSync } = require("fs")
 const log = require("./log")
+
+const getEntryForStyles = packageName => {
+  if (existsSync("./src/styles.scss")) {
+    return {
+      [`${packageName}-styles`]: resolve("./src/styles.scss")
+    }
+  }
+  return null
+}
 
 const getServerConfig = configs => {
   if (Array.isArray(configs)) {
@@ -32,7 +42,8 @@ const processPackage = (packagePath, configPath) =>
     const packageName = split[split.length - 1]
 
     config.entry = {
-      [`${packageName}`]: resolve("./main.js")
+      [`${packageName}`]: resolve("./main.js"),
+      ...getEntryForStyles(config)
     }
 
     const compiler = Webpack(config)
@@ -88,7 +99,8 @@ const build = (configPath, packageName, root) => {
     }
   } else {
     config.entry = {
-      [`${packageName}`]: resolve("./src/index.jsx")
+      [`${packageName}`]: resolve("./src/index.jsx"),
+      ...getEntryForStyles(config)
     }
   }
 
@@ -109,12 +121,13 @@ const buildAll = configPath => {
   )
 }
 
-const start = configPath => {
+const start = (configPath, packageName) => {
   const configs = require(configPath)
   const serverConfig = getServerConfig(configs)
 
   serverConfig.entry = [
     resolve("./src/index.jsx"),
+    getEntryForStyles(packageName)[`${packageName}-styles`],
     `webpack-dev-server/client?http://localhost:${serverConfig.devServer.port}`
   ]
   const server = new WebpackDevServer(Webpack(serverConfig), {
