@@ -8,8 +8,8 @@ function Footer() {
           <a href="/">Back to top</a>
         </p>
         <p>
-          Album example is © Bootstrap, but please download and customize it for
-          yourself!
+          © Buy My House, a practical example of front-end microservice
+          architecture
         </p>
         <p>
           New to Bootstrap? <a href="../../">Visit the homepage</a> or read our{" "}
