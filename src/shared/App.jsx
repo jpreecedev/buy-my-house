@@ -1,6 +1,6 @@
 import * as React from "react"
 
-// import "../../components/styling/base.scss"
+import "../../components/styling/base.scss"
 
 import Header from "../../components/header"
 import Jumbotron from "../../components/jumbotron"

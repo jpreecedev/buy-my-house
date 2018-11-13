@@ -33,7 +33,6 @@ const cssModuleLoaderClient = {
 }
 
 const scssModuleLoaderClient = {
-  test: scssModuleRegex,
   use: [
     require.resolve("css-hot-loader"),
     MiniCssExtractPlugin.loader,
@@ -57,8 +56,6 @@ const scssModuleLoaderClient = {
 }
 
 const cssLoaderClient = {
-  test: cssRegex,
-  exclude: cssModuleRegex,
   use: [
     require.resolve("css-hot-loader"),
     MiniCssExtractPlugin.loader,
@@ -67,8 +64,6 @@ const cssLoaderClient = {
 }
 
 const scssLoaderClient = {
-  test: scssRegex,
-  exclude: scssModuleRegex,
   use: [
     require.resolve("css-hot-loader"),
     MiniCssExtractPlugin.loader,
@@ -77,47 +72,12 @@ const scssLoaderClient = {
   ]
 }
 
-const cssModuleLoaderServer = {
-  test: cssModuleRegex,
-  use: [
-    {
-      loader: require.resolve("css-loader/locals"),
-      options: {
-        camelCase: true,
-        importLoaders: 1,
-        modules: true,
-        localIdentName: "[name]__[local]___[hash:base64:5]"
-      }
-    }
-  ]
-}
-
-const scssModuleLoaderServer = {
-  test: scssModuleRegex,
-  use: [
-    {
-      loader: require.resolve("css-loader/locals"),
-      options: {
-        camelCase: true,
-        importLoaders: 1,
-        modules: true,
-        localIdentName: "[name]__[local]___[hash:base64:5]"
-      }
-    },
-    require.resolve("sass-loader")
-  ]
-}
-
 const cssLoaderServer = {
-  test: cssRegex,
-  exclude: cssModuleRegex,
   loader: require.resolve("css-loader")
 }
 
 const scssLoaderServer = {
-  test: scssRegex,
-  exclude: scssModuleRegex,
-  loader: require.resolve("sass-loader")
+  use: [require.resolve("css-loader"), require.resolve("sass-loader")]
 }
 
 const urlLoaderClient = {
@@ -164,28 +124,39 @@ const fileLoaderServer = {
 
 const client = [
   {
-    oneOf: [
-      babelLoader,
-      cssModuleLoaderClient,
-      scssModuleLoaderClient,
-      cssLoaderClient,
-      scssLoaderClient,
-      urlLoaderClient,
-      fileLoaderClient
-    ]
+    test: /\.js$/,
+    oneOf: [babelLoader, urlLoaderClient, fileLoaderClient]
+  },
+  {
+    test: /\.jsx$/,
+    oneOf: [babelLoader]
+  },
+  {
+    test: /\.scss$/,
+    oneOf: [scssLoaderClient]
+  },
+  {
+    test: /\.css$/,
+    oneOf: [cssLoaderClient]
   }
 ]
+
 const server = [
   {
-    oneOf: [
-      babelLoader,
-      cssModuleLoaderServer,
-      scssModuleLoaderServer,
-      cssLoaderServer,
-      scssLoaderServer,
-      urlLoaderServer,
-      fileLoaderServer
-    ]
+    test: /\.js$/,
+    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer]
+  },
+  {
+    test: /\.jsx$/,
+    oneOf: [babelLoader]
+  },
+  {
+    test: /\.scss$/,
+    oneOf: [scssLoaderServer]
+  },
+  {
+    test: /\.css$/,
+    oneOf: [cssLoaderServer]
   }
 ]
 
