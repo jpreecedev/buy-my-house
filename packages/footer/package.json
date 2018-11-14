@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
   "license": "MIT",
-  "main": "index.js",
+  "main": "entry.js",
   "engines": {
     "node": ">=8.9.0"
   },

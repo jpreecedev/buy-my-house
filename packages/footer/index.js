@@ -1,3 +1,6 @@
+import * as React from "react"
+import * as ReactDOM from "react-dom"
+
 import Footer from "./src/footer"
 
-export default Footer
+ReactDOM.render(<Footer />, document.getElementById("root"))

@@ -98,16 +98,7 @@ module.exports = {
     colors: true
   },
   resolve: {
-    extensions: [
-      ".js",
-      ".jsx",
-      ".scss",
-      ".gif",
-      ".png",
-      ".jpg",
-      ".jpeg",
-      ".svg"
-    ]
+    extensions: [".js", ".scss", ".gif", ".png", ".jpg", ".jpeg", ".svg"]
   },
   externals: {
     react: "React",

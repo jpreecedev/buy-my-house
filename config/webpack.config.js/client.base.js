@@ -8,7 +8,7 @@ module.exports = {
   name: "client",
   target: "web",
   entry: {
-    bundle: [`${paths.srcClient}/index.jsx`]
+    bundle: [`${paths.srcClient}/index.js`]
   },
   output: {
     path: path.join(paths.clientBuild, paths.publicPath),
