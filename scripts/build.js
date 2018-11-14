@@ -50,14 +50,12 @@ const build = async () => {
   serverCompiler.watch({}, (error, stats) => {
     if (!error && !stats.hasErrors()) {
       console.log(stats.toString(serverConfig.stats))
-
     }
   })
 
   clientCompiler.watch({}, (error, stats) => {
     if (!error && !stats.hasErrors()) {
       console.log(stats.toString(clientConfig.stats))
-
     }
   })
 

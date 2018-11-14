@@ -1,0 +1,14 @@
+{
+  "name": "@buy-my-house/footer",
+  "version": "1.0.0",
+  "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
+  "license": "MIT",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
+    "prettier": "prettier \"**/*.{js,scss}\" --write"
+  }
+}

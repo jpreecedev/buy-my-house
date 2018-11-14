@@ -1,0 +1,19 @@
+{
+  "name": "@buy-my-house/shell",
+  "version": "1.0.0",
+  "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
+    "prettier": "prettier \"**/*.{js,scss}\" --write"
+  },
+  "dependencies": {
+    "@buy-my-house/filter": "^1.0.0",
+    "@buy-my-house/footer": "^1.0.0",
+    "@buy-my-house/header": "^1.0.0",
+    "@buy-my-house/jumbotron": "^1.0.0",
+    "@buy-my-house/results": "^1.0.0",
+    "@buy-my-house/shell": "^1.0.0",
+    "@buy-my-house/styling": "^1.0.0"
+  }
+}

@@ -8,10 +8,9 @@ const paths = {
   clientBuild: resolveApp("build/client"),
   serverBuild: resolveApp("build/server"),
   src: resolveApp("src"),
-  srcClient: resolveApp("src/client"),
-  srcServer: resolveApp("src/server"),
-  srcShared: resolveApp("src/shared"),
-  packages: resolveApp("packages"),
+  srcClient: resolveApp("packages/shell/src/client"),
+  srcServer: resolveApp("packages/shell/src/server"),
+  srcShared: resolveApp("packages/shell/src/shared"),
   publicPath: "/static/"
 }
 
