@@ -45,7 +45,6 @@ const build = async () => {
   )
 
   const clientPromise = compilerPromise("client", clientCompiler)
-  const serverPromise = compilerPromise("server", serverCompiler)
 
   serverCompiler.watch({}, (error, stats) => {
     if (!error && !stats.hasErrors()) {
@@ -61,7 +60,6 @@ const build = async () => {
 
   // wait until client and server is compiled
   try {
-    await serverPromise
     await clientPromise
     await generateStaticHTML()
     logMessage("Done!", "info")

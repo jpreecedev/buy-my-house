@@ -8,12 +8,13 @@
     "prettier": "prettier \"**/*.{js,scss}\" --write"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
     "@buy-my-house/filter": "^1.0.0",
     "@buy-my-house/footer": "^1.0.0",
     "@buy-my-house/header": "^1.0.0",
     "@buy-my-house/jumbotron": "^1.0.0",
     "@buy-my-house/results": "^1.0.0",
-    "@buy-my-house/shell": "^1.0.0",
     "@buy-my-house/styling": "^1.0.0"
   }
 }

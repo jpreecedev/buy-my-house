@@ -1,5 +1,6 @@
 const path = require("path")
 const paths = require("../paths")
+const fs = require("fs")
 const { client: clientLoaders } = require("./loaders")
 const resolvers = require("./resolvers")
 const plugins = require("./plugins")
@@ -17,9 +18,38 @@ module.exports = {
     chunkFilename: "[name].[chunkhash:8].chunk.js"
   },
   module: {
-    rules: clientLoaders
+    rules: [
+      {
+        test: /\.(js)$/,
+        loader: "babel-loader",
+        include: [
+          fs.realpathSync("packages/header"),
+          fs.realpathSync("packages/shell/src/client"),
+          fs.realpathSync("packages/shell/src/shared"),
+          fs.realpathSync("packages/footer"),
+          fs.realpathSync("packages/filter"),
+          fs.realpathSync("packages/jumbotron"),
+          fs.realpathSync("packages/results"),
+          fs.realpathSync("packages/styling")
+        ]
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        loader: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: false
+            }
+          }
+        ]
+      }
+    ]
   },
-  resolve: { ...resolvers },
+  resolve: { ...resolvers, symlinks: false },
   plugins: [...plugins.shared, ...plugins.client],
   node: {
     dgram: "empty",
@@ -44,12 +74,12 @@ module.exports = {
   stats: {
     cached: false,
     cachedAssets: false,
-    chunks: false,
-    chunkModules: false,
+    chunks: true,
+    chunkModules: true,
     colors: true,
     hash: false,
     modules: false,
-    reasons: false,
+    reasons: true,
     timings: true,
     version: false
   },
