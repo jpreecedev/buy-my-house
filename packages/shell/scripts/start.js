@@ -56,6 +56,7 @@ const start = async () => {
   )
 
   const clientPromise = compilerPromise("client", clientCompiler)
+  const serverPromise = compilerPromise("server", serverCompiler)
 
   const watchOptions = {
     // poll: true,
@@ -72,7 +73,6 @@ const start = async () => {
     webpackDevMiddleware(clientCompiler, {
       publicPath: clientConfig.output.publicPath,
       stats: clientConfig.stats,
-      serverSideRender: true,
       watchOptions
     })
   )
@@ -104,6 +104,7 @@ const start = async () => {
 
   // wait until client and server is compiled
   try {
+    await serverPromise
     await clientPromise
   } catch (error) {
     logMessage(error, "error")

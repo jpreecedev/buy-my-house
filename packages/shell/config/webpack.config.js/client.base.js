@@ -17,27 +17,7 @@ module.exports = {
     chunkFilename: "[name].[chunkhash:8].chunk.js"
   },
   module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        loader: "babel-loader",
-        exclude: /node_modules/
-      },
-      {
-        test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
-          "style-loader",
-          "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      }
-    ]
+    rules: clientLoaders
   },
   resolve: { ...resolvers },
   plugins: [...plugins.shared, ...plugins.client],
