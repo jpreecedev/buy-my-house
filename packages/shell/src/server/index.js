@@ -7,7 +7,7 @@ import chalk from "chalk"
 import manifestHelpers from "express-manifest-helpers"
 import bodyParser from "body-parser"
 import serverRenderer from "./render"
-import paths from "../../../../config/paths"
+import paths from "../../config/paths"
 
 const app = express()
 

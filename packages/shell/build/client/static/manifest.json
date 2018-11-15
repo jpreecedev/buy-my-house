@@ -1,0 +1,4 @@
+{
+  "bundle.js": "http://localhost:8501/static/bundle.js",
+  "vendor.js": "http://localhost:8501/static/vendor.2d3e9b7a.chunk.js"
+}

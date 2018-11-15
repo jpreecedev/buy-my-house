@@ -4,13 +4,15 @@ const fs = require("fs")
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
 
+console.log(appDirectory)
+
 const paths = {
   clientBuild: resolveApp("build/client"),
   serverBuild: resolveApp("build/server"),
   src: resolveApp("src"),
-  srcClient: resolveApp("packages/shell/src/client"),
-  srcServer: resolveApp("packages/shell/src/server"),
-  srcShared: resolveApp("packages/shell/src/shared"),
+  srcClient: resolveApp("src/client"),
+  srcServer: resolveApp("src/server"),
+  srcShared: resolveApp("src/shared"),
   publicPath: "/static/"
 }
 

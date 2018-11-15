@@ -4,16 +4,18 @@
   "author": "Jon Preece <jonpreece@hotmail.co.uk> (https://github.com/jpreecedev)",
   "license": "MIT",
   "scripts": {
+    "build": "cross-env NODE_ENV=production node scripts/build.js",
+    "start": "cross-env NODE_ENV=development node scripts/start.js",
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
   },
   "dependencies": {
+    "@babel/runtime": "^7.1.5",
     "@buy-my-house/filter": "^1.0.0",
     "@buy-my-house/footer": "^1.0.0",
     "@buy-my-house/header": "^1.0.0",
     "@buy-my-house/jumbotron": "^1.0.0",
     "@buy-my-house/results": "^1.0.0",
-    "@buy-my-house/shell": "^1.0.0",
     "@buy-my-house/styling": "^1.0.0"
   }
 }
