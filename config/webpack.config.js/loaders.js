@@ -125,7 +125,7 @@ const fileLoaderServer = {
 const client = [
   {
     test: /\.js$/,
-    use: [babelLoader, urlLoaderClient, fileLoaderClient]
+    oneOf: [babelLoader, urlLoaderClient, fileLoaderClient]
   },
   {
     test: /\.scss$/,
@@ -140,7 +140,15 @@ const client = [
 const server = [
   {
     test: /\.js$/,
-    oneOf: [urlLoaderServer, fileLoaderServer]
+    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer]
+  },
+  {
+    test: /\.scss$/,
+    oneOf: [scssLoaderServer]
+  },
+  {
+    test: /\.css$/,
+    oneOf: [cssLoaderServer]
   }
 ]
 
