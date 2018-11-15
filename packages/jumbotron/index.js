@@ -1,3 +1,6 @@
+import * as React from "react"
+import * as ReactDOM from "react-dom"
+
 import Jumbotron from "./src/jumbotron"
 
-export default Jumbotron
+ReactDOM.render(<Jumbotron />, document.getElementById("root"))

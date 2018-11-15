@@ -1,3 +1,6 @@
+import * as React from "react"
+import { render } from "react-dom"
+
 import Header from "./src/header"
 
-export default Header
+render(<Header />, document.getElementById("root"))

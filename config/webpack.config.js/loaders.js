@@ -9,7 +9,7 @@ const scssRegex = /\.scss$/
 const scssModuleRegex = /\.module\.scss$/
 
 const babelLoader = {
-  test: /\.(js|jsx|mjs)$/,
+  test: /\.(js|mjs)$/,
   exclude: /node_modules/,
   loader: require.resolve("babel-loader")
 }
@@ -128,10 +128,6 @@ const client = [
     use: [babelLoader, urlLoaderClient, fileLoaderClient]
   },
   {
-    test: /\.jsx$/,
-    oneOf: [babelLoader]
-  },
-  {
     test: /\.scss$/,
     use: [scssLoaderClient]
   },
@@ -144,19 +140,7 @@ const client = [
 const server = [
   {
     test: /\.js$/,
-    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer]
-  },
-  {
-    test: /\.jsx$/,
-    oneOf: [babelLoader]
-  },
-  {
-    test: /\.scss$/,
-    oneOf: [scssLoaderServer]
-  },
-  {
-    test: /\.css$/,
-    oneOf: [cssLoaderServer]
+    oneOf: [urlLoaderServer, fileLoaderServer]
   }
 ]
 

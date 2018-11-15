@@ -1,3 +1,6 @@
+import * as React from "react"
+import * as ReactDOM from "react-dom"
+
 import Results from "./src/results-container"
 
-export default Results
+ReactDOM.render(<Results />, document.getElementById("root"))
