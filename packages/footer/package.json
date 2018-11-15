@@ -10,9 +10,5 @@
   "scripts": {
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
-  },
-  "dependencies": {
-    "@babel/preset-env": "^7.1.6",
-    "@babel/preset-react": "^7.0.0"
   }
 }

@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const { resolve } = require("path")
+
 const generateSourceMap = process.env.OMIT_SOURCEMAP !== "true"
 
 const cssRegex = /\.css$/
@@ -125,22 +125,30 @@ const fileLoaderServer = {
 const client = [
   {
     test: /\.js$/,
-    use: [babelLoader, urlLoaderClient, fileLoaderClient]
+    oneOf: [babelLoader, urlLoaderClient, fileLoaderClient]
   },
   {
     test: /\.scss$/,
-    use: [scssLoaderClient]
+    oneOf: [scssLoaderClient]
   },
   {
     test: /\.css$/,
-    use: [cssLoaderClient]
+    oneOf: [cssLoaderClient]
   }
 ]
 
 const server = [
   {
     test: /\.js$/,
-    oneOf: [urlLoaderServer, fileLoaderServer]
+    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer]
+  },
+  {
+    test: /\.scss$/,
+    oneOf: [scssLoaderServer]
+  },
+  {
+    test: /\.css$/,
+    oneOf: [cssLoaderServer]
   }
 ]
 
