@@ -1,9 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-
-const generateSourceMap = process.env.OMIT_SOURCEMAP !== "true"
-
-const cssRegex = /\.css$/
-const cssModuleRegex = /\.module\.css$/
+const generateSourceMap = process.env.OMIT_SOURCEMAP === "true" ? false : true
 
 const scssRegex = /\.scss$/
 const scssModuleRegex = /\.module\.scss$/
@@ -14,25 +10,8 @@ const babelLoader = {
   loader: require.resolve("babel-loader")
 }
 
-const cssModuleLoaderClient = {
-  test: cssModuleRegex,
-  use: [
-    require.resolve("css-hot-loader"),
-    MiniCssExtractPlugin.loader,
-    {
-      loader: require.resolve("css-loader"),
-      options: {
-        camelCase: true,
-        modules: true,
-        importLoaders: 1,
-        sourceMap: generateSourceMap,
-        localIdentName: "[name]__[local]___[hash:base64:5]"
-      }
-    }
-  ]
-}
-
 const scssModuleLoaderClient = {
+  test: scssModuleRegex,
   use: [
     require.resolve("css-hot-loader"),
     MiniCssExtractPlugin.loader,
@@ -55,29 +34,47 @@ const scssModuleLoaderClient = {
   ]
 }
 
-const cssLoaderClient = {
-  use: [
-    require.resolve("css-hot-loader"),
-    MiniCssExtractPlugin.loader,
-    require.resolve("css-loader")
-  ]
-}
-
 const scssLoaderClient = {
+  test: scssRegex,
+  exclude: scssModuleRegex,
   use: [
     require.resolve("css-hot-loader"),
     MiniCssExtractPlugin.loader,
     require.resolve("css-loader"),
-    require.resolve("sass-loader")
+    {
+      loader: require.resolve("sass-loader"),
+      options: {
+        sourceMap: generateSourceMap
+      }
+    }
   ]
 }
 
-const cssLoaderServer = {
-  loader: require.resolve("css-loader")
+const scssModuleLoaderServer = {
+  test: scssModuleRegex,
+  use: [
+    {
+      loader: require.resolve("css-loader/locals"),
+      options: {
+        camelCase: true,
+        importLoaders: 1,
+        modules: true,
+        localIdentName: "[name]__[local]--[hash:base64:5]"
+      }
+    },
+    {
+      loader: require.resolve("sass-loader"),
+      options: {
+        sourceMap: generateSourceMap
+      }
+    }
+  ]
 }
 
 const scssLoaderServer = {
-  use: [require.resolve("css-loader"), require.resolve("sass-loader")]
+  test: scssRegex,
+  exclude: scssModuleRegex,
+  loader: [require.resolve("css-loader"), require.resolve("sass-loader")]
 }
 
 const urlLoaderClient = {
@@ -124,39 +121,24 @@ const fileLoaderServer = {
 
 const client = [
   {
-    test: /\.js$/,
-    oneOf: [babelLoader, urlLoaderClient, fileLoaderClient]
-  },
-  {
-    test: /\.jsx$/,
-    oneOf: [babelLoader]
-  },
-  {
-    test: /\.scss$/,
-    oneOf: [scssLoaderClient]
-  },
-  {
-    test: /\.css$/,
-    oneOf: [cssLoaderClient]
+    oneOf: [
+      babelLoader,
+      scssModuleLoaderClient,
+      scssLoaderClient,
+      urlLoaderClient,
+      fileLoaderClient
+    ]
   }
 ]
-
 const server = [
   {
-    test: /\.js$/,
-    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer]
-  },
-  {
-    test: /\.jsx$/,
-    oneOf: [babelLoader]
-  },
-  {
-    test: /\.scss$/,
-    oneOf: [scssLoaderServer]
-  },
-  {
-    test: /\.css$/,
-    oneOf: [cssLoaderServer]
+    oneOf: [
+      babelLoader,
+      scssModuleLoaderServer,
+      scssLoaderServer,
+      urlLoaderServer,
+      fileLoaderServer
+    ]
   }
 ]
 
