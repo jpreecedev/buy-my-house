@@ -10,8 +10,5 @@
   "scripts": {
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.1.5"
   }
 }

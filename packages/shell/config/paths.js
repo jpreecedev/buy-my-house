@@ -1,14 +1,8 @@
-const path = require("path")
-const fs = require("fs")
-
-const appDirectory = fs.realpathSync(process.cwd())
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
-
-console.log(appDirectory)
+const { resolveApp } = require("../scripts/utils")
 
 const paths = {
-  clientBuild: resolveApp("../../../build/client"),
-  serverBuild: resolveApp("../../../build/server"),
+  clientBuild: resolveApp("../../build/client"),
+  serverBuild: resolveApp("../../build/server"),
   src: resolveApp("src"),
   srcClient: resolveApp("src/client"),
   srcServer: resolveApp("src/server"),

@@ -3,12 +3,16 @@ const paths = require("../paths")
 const { client: clientLoaders } = require("./loaders")
 const resolvers = require("./resolvers")
 const plugins = require("./plugins")
+const HtmlWebPackPlugin = require("html-webpack-plugin")
 
-module.exports = {
+const entry = process.env.ENTRY || paths.srcClient
+const isIsolated = process.env.ENTRY === "."
+
+const config = {
   name: "client",
   target: "web",
   entry: {
-    bundle: [`${paths.srcClient}/index.jsx`]
+    bundle: [`${entry}/index.jsx`]
   },
   output: {
     path: path.join(paths.clientBuild, paths.publicPath),
@@ -58,3 +62,16 @@ module.exports = {
     "react-dom": "ReactDOM"
   }
 }
+
+if (isIsolated) {
+  delete config.output.publicPath
+
+  config.plugins.push(
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  )
+}
+
+module.exports = config

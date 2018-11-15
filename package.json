@@ -11,7 +11,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "lerna run start --stream --scope=@buy-my-house/shell"
+    "start": "node start.js"
   },
   "repository": {
     "type": "git",

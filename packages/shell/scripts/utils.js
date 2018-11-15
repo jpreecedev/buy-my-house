@@ -1,4 +1,9 @@
 const chalk = require("chalk")
+const { realpathSync } = require("fs")
+const { resolve } = require("path")
+
+const appDirectory = realpathSync(process.cwd())
+const resolveApp = relativePath => resolve(appDirectory, relativePath)
 
 const logMessage = (message, level = "info") => {
   const color =
@@ -7,13 +12,13 @@ const logMessage = (message, level = "info") => {
 }
 
 const compilerPromise = (name, compiler) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolvePromise, reject) => {
     compiler.hooks.compile.tap(name, () => {
       logMessage(`[${name}] Compiling `)
     })
     compiler.hooks.done.tap(name, stats => {
       if (!stats.hasErrors()) {
-        return resolve()
+        return resolvePromise()
       }
       return reject(new Error(`Failed to compile ${name} - ${stats}`))
     })
@@ -22,5 +27,7 @@ const compilerPromise = (name, compiler) => {
 
 module.exports = {
   logMessage,
+  appDirectory,
+  resolveApp,
   compilerPromise
 }

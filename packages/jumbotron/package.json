@@ -8,10 +8,11 @@
     "node": ">=8.9.0"
   },
   "scripts": {
+    "start": "cross-env ENTRY=. webpack-dev-server --hot --config ../shell/config/webpack.config.js/client.dev.js",
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.5"
+    "@buy-my-house/styling": "^1.0.0"
   }
 }
