@@ -7,29 +7,6 @@ const webpackConfig = require("../config/webpack.config.js")(
 const paths = require("../config/paths")
 const { logMessage, compilerPromise } = require("./utils")
 
-const { choosePort } = require("react-dev-utils/WebpackDevServerUtils")
-
-const generateStaticHTML = async () => {
-  const nodemon = require("nodemon")
-  const fs = require("fs")
-  const port = await choosePort("localhost", 8505)
-
-  process.env.PORT = port
-
-  const script = nodemon({
-    script: `${paths.serverBuild}/server.js`,
-    ignore: ["*"]
-  })
-
-  script.on("exit", code => {
-    process.exit(code)
-  })
-
-  script.on("crash", () => {
-    process.exit(1)
-  })
-}
-
 const build = async () => {
   rimraf.sync(paths.clientBuild)
   rimraf.sync(paths.serverBuild)
@@ -47,14 +24,14 @@ const build = async () => {
   const clientPromise = compilerPromise("client", clientCompiler)
   const serverPromise = compilerPromise("server", serverCompiler)
 
-  serverCompiler.watch({}, (error, stats) => {
+  serverCompiler.run((error, stats) => {
     if (!error && !stats.hasErrors()) {
       console.log(stats.toString(serverConfig.stats))
       return
     }
   })
 
-  clientCompiler.watch({}, (error, stats) => {
+  clientCompiler.run((error, stats) => {
     if (!error && !stats.hasErrors()) {
       console.log(stats.toString(clientConfig.stats))
       return
@@ -65,7 +42,6 @@ const build = async () => {
   try {
     await serverPromise
     await clientPromise
-    await generateStaticHTML()
     logMessage("Done!", "info")
   } catch (error) {
     logMessage(error, "error")

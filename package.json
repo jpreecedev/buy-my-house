@@ -11,7 +11,9 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "node start.js"
+    "start": "node start.js",
+    "build": "cross-env NODE_ENV=development lerna run build --stream --scope=@buy-my-house/shell",
+    "build:prod": "cross-env NODE_ENV=production lerna run build:prod --stream --scope=@buy-my-house/shell"
   },
   "repository": {
     "type": "git",
