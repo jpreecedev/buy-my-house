@@ -14,8 +14,6 @@ const serverRenderer = () => (req, res) => {
           res.locals.assetPath("vendor.css")
         ]}
         scripts={[
-          "https://unpkg.com/react@16/umd/react.development.js",
-          "https://unpkg.com/react-dom@16/umd/react-dom.development.js",
           res.locals.assetPath("bundle.js"),
           res.locals.assetPath("vendor.js")
         ]}

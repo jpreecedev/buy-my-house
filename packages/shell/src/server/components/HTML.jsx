@@ -9,6 +9,7 @@ function HTML({ children, scripts, css }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
         {head.base.toComponent()}
         {head.title.toComponent()}
         {head.meta.toComponent()}
@@ -20,6 +21,14 @@ function HTML({ children, scripts, css }) {
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
+        <script
+          crossOrigin="anonymous"
+          src="https://unpkg.com/react@16/umd/react.development.js"
+        />
+        <script
+          crossOrigin="anonymous"
+          src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+        />
         {scripts.map(src => (
           <script key={src} src={src} />
         ))}
