@@ -18,7 +18,7 @@ function Jumbotron({ small }) {
   return (
     <section className={classes}>
       <div className="container">
-        <h1 className="jumbotron-heading">Buy my home</h1>
+        <h1 className="jumbotron-heading">Buy My House</h1>
         {!small && (
           <p className="lead text-muted">
             Something short and leading about the collection below—its contents,

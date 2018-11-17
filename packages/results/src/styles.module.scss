@@ -1,0 +1,10 @@
+.link {
+  display: block;
+  color: inherit;
+  &:hover{
+    text-decoration: none;
+    box-shadow: 0px 0px 30px 0px rgba(2,58,64,0.67);
+    transform: scaleY(1.02);
+    z-index:2;
+  }
+}

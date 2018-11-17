@@ -10,6 +10,7 @@ const Query = `
       property_type
       image_url
       num_bedrooms
+      short_description
       description
       price
       displayable_address
