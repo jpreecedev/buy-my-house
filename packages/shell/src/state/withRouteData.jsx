@@ -1,4 +1,6 @@
 import * as React from "react"
+
+import Layout from "../shared/Layout"
 import Spinner from "../shared/Spinner"
 
 const withRouteData = loadData => Component => {
@@ -22,7 +24,11 @@ const withRouteData = loadData => Component => {
     render() {
       const { loading, data, error } = this.state
       if (loading) {
-        return <Spinner />
+        return (
+          <Layout>
+            <Spinner />
+          </Layout>
+        )
       }
       if (!loading && error) {
         return <p>{error}</p>
