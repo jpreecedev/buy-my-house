@@ -52,6 +52,7 @@
     "autoprefixer": "^9.3.1",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "classnames": "^2.2.6",
     "commander": "^2.19.0",
     "cross-env": "^5.2.0",
     "css-hot-loader": "^1.4.1",

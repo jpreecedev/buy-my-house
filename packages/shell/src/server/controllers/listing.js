@@ -1,13 +1,10 @@
 import fetch from "../fetch"
 import serverRenderer from "../render"
-import Home from "../../shared/Home"
+import Listing from "../../shared/Listing"
 
 const Query = `
 {
   results {
-    country
-    result_count
-    area_name
     listing{
       listing_id
       property_type
@@ -21,13 +18,15 @@ const Query = `
 }`
 
 async function get(req, res) {
-  const data = await fetch(Query).then(result => ({
-    listings: result.results.listing,
-    area: result.area_name,
-    count: result.result_count
+  const variables = {
+    listingId: req.params.listingId
+  }
+
+  const data = await fetch(Query, variables).then(result => ({
+    listing: result.results.listing[0]
   }))
 
-  return serverRenderer(Home, data)(req, res)
+  return serverRenderer(Listing, data)(req, res)
 }
 
 export default { get }

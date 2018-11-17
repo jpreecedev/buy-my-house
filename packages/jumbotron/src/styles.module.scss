@@ -15,6 +15,11 @@
   }
 }
 
+.small {
+  padding-top: calc(var(--jumbotron-padding-y) * 0.75);
+  padding-bottom: calc(var(--jumbotron-padding-y) * 0.75);
+}
+
 @media (min-width: 768px) {
   .jumbotron {
     padding-top: calc(var(--jumbotron-padding-y) * 2);

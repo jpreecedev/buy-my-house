@@ -8,7 +8,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "cross-env ENTRY=. webpack-dev-server --hot --config ../shell/config/webpack.config.js/client.dev.js",
+    "start": "cross-env NODE_ENV=development ENTRY=. webpack-dev-server --hot --config ../shell/config/webpack.config.js/client.dev.js",
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
   },

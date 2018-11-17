@@ -21,6 +21,7 @@ const serverRenderer = (Component, data) => (req, res) => {
           res.locals.assetPath("bundle.js"),
           res.locals.assetPath("vendor.js")
         ]}
+        initialData={data}
       >
         {content}
       </Html>

@@ -4,20 +4,20 @@ import "@buy-my-house/styling"
 
 import Header from "@buy-my-house/header"
 import Jumbotron from "@buy-my-house/jumbotron"
-import Results from "@buy-my-house/results"
+import ResultsContainer from "@buy-my-house/results"
 import Footer from "@buy-my-house/footer"
 
-function App({ initialData: listings }) {
+function Home({ initialData: results }) {
   return (
     <>
       <Header />
       <main role="main">
         <Jumbotron />
-        <Results listings={listings} />
+        {results && <ResultsContainer listings={results.listings} />}
       </main>
       <Footer />
     </>
   )
 }
 
-export default App
+export default Home

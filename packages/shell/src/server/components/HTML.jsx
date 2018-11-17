@@ -2,7 +2,7 @@
 import React from "react"
 import Helmet from "react-helmet"
 
-function HTML({ children, scripts, css }) {
+function HTML({ children, scripts, css, initialData }) {
   const head = Helmet.renderStatic()
   return (
     <html lang="en">
@@ -29,6 +29,15 @@ function HTML({ children, scripts, css }) {
           crossOrigin="anonymous"
           src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
         />
+        {initialData && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__PRELOADED_STATE__ = ${JSON.stringify(
+                initialData
+              )}`
+            }}
+          />
+        )}
         {scripts.map(src => (
           <script key={src} src={src} />
         ))}
