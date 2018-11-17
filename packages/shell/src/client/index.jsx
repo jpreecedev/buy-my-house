@@ -3,18 +3,15 @@
 import React from "react"
 import { hydrate } from "react-dom"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+
 import Home from "../shared/Home"
 import Listing from "../shared/Listing"
 
 hydrate(
   <Router>
     <Switch>
-      <Route path="/listing/:listingId">
-        <Listing initialData={window.__PRELOADED_STATE__} />
-      </Route>
-      <Route exact path="/">
-        <Home initialData={window.__PRELOADED_STATE__} />
-      </Route>
+      <Route path="/listing/:listingId" component={Listing} />
+      <Route exact path="/" component={Home} />
     </Switch>
   </Router>,
   document.getElementById("app")

@@ -1,6 +1,7 @@
 import fetch from "../fetch"
 import serverRenderer from "../render"
 import Home from "../../shared/Home"
+import loadData from "../../state/loadData"
 
 const Query = `
 {
@@ -20,14 +21,16 @@ const Query = `
   }
 }`
 
-async function get(req, res) {
-  const data = await fetch(Query).then(result => ({
+export const getState = () =>
+  fetch(Query).then(result => ({
     listings: result.results.listing,
     area: result.area_name,
     count: result.result_count
   }))
 
+async function get(req, res) {
+  const data = await loadData(getState)
   return serverRenderer(Home, data)(req, res)
 }
 
-export default { get }
+export default { get, getState }

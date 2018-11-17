@@ -6,6 +6,8 @@ import Header from "@buy-my-house/header"
 import Jumbotron from "@buy-my-house/jumbotron"
 import Footer from "@buy-my-house/footer"
 import ListingItem from "@buy-my-house/listing"
+import { getState } from "../server/controllers/listing"
+import withRouteData from "../state/withRouteData"
 
 function Listing({ initialData: result }) {
   return (
@@ -22,4 +24,4 @@ function Listing({ initialData: result }) {
   )
 }
 
-export default Listing
+export default withRouteData(getState)(Listing)

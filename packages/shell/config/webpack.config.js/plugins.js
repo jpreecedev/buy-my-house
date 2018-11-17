@@ -9,8 +9,8 @@ const shared = []
 const client = [
   new webpack.DefinePlugin(env.stringified),
   new webpack.DefinePlugin({
-    __SERVER__: "false",
-    __CLIENT__: "true"
+    "process.env.__SERVER__": "false",
+    "process.env.__CLIENT__": "true"
   }),
   new MiniCssExtractPlugin({
     filename:
@@ -28,8 +28,8 @@ const client = [
 
 const server = [
   new webpack.DefinePlugin({
-    __SERVER__: "true",
-    __CLIENT__: "false"
+    "process.env.__SERVER__": "true",
+    "process.env.__CLIENT__": "false"
   })
 ]
 
