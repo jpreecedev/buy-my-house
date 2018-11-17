@@ -7,13 +7,13 @@ import Jumbotron from "@buy-my-house/jumbotron"
 import Results from "@buy-my-house/results"
 import Footer from "@buy-my-house/footer"
 
-function App() {
+function App({ initialData: listings }) {
   return (
     <>
       <Header />
       <main role="main">
         <Jumbotron />
-        <Results />
+        <Results listings={listings} />
       </main>
       <Footer />
     </>

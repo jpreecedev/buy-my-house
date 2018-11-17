@@ -6,8 +6,8 @@ import path from "path"
 import chalk from "chalk"
 import manifestHelpers from "express-manifest-helpers"
 import bodyParser from "body-parser"
-import serverRenderer from "./render"
 import paths from "../../config/paths"
+import router from "./router"
 
 const app = express()
 
@@ -34,7 +34,8 @@ app.use(
     manifestPath: `${manifestPath}/manifest.json`
   })
 )
-app.use(serverRenderer())
+
+router(app)
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) =>

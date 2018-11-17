@@ -6,7 +6,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=development node scripts/build.js",
     "build:prod": "cross-env NODE_ENV=production node scripts/build.js",
-    "start": "cross-env NODE_ENV=development node scripts/start.js",
+    "start": "cross-env NODE_ENV=development WEB_GATEWAY=http://localhost:3002 node scripts/start.js",
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "prettier": "prettier \"**/*.{js,scss}\" --write"
   },

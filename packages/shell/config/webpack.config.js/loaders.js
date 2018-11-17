@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const generateSourceMap = process.env.OMIT_SOURCEMAP === "true" ? false : true
+
+const generateSourceMap = process.env.OMIT_SOURCEMAP !== "true"
 
 const scssRegex = /\.scss$/
 const scssModuleRegex = /\.module\.scss$/
@@ -59,7 +60,7 @@ const scssModuleLoaderServer = {
         camelCase: true,
         importLoaders: 1,
         modules: true,
-        localIdentName: "[name]__[local]--[hash:base64:5]"
+        localIdentName: "[name]__[local]___[hash:base64:5]"
       }
     },
     {

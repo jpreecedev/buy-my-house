@@ -19,7 +19,8 @@ process.env.NODE_PATH = (process.env.NODE_PATH || "")
 module.exports = () => {
   const raw = {
     PORT: process.env.PORT || 8500,
-    NODE_ENV: process.env.NODE_ENV || "development"
+    NODE_ENV: process.env.NODE_ENV || "development",
+    WEB_GATEWAY: process.env.WEB_GATEWAY || "http://localhost:3002"
   }
 
   // Stringify all values so we can feed into Webpack DefinePlugin
