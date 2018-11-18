@@ -21,14 +21,6 @@ function HTML({ children, scripts, css, initialData }) {
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
-        <script
-          crossOrigin="anonymous"
-          src="https://unpkg.com/react@16/umd/react.development.js"
-        />
-        <script
-          crossOrigin="anonymous"
-          src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-        />
         {initialData && (
           <script
             dangerouslySetInnerHTML={{
@@ -38,6 +30,14 @@ function HTML({ children, scripts, css, initialData }) {
             }}
           />
         )}
+        <script
+          crossOrigin="anonymous"
+          src="https://unpkg.com/react@16/umd/react.development.js"
+        />
+        <script
+          crossOrigin="anonymous"
+          src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+        />
         {scripts.map(src => (
           <script key={src} src={src} />
         ))}

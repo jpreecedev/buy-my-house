@@ -2,8 +2,9 @@ import * as React from "react"
 
 import Layout from "../shared/Layout"
 import Spinner from "../shared/Spinner"
+import loadData from "./loadData"
 
-const withRouteData = loadData => Component => {
+const withRouteData = (getState, getVariables) => Component => {
   class WithRouteData extends React.Component {
     state = {
       loading: true,
@@ -12,7 +13,7 @@ const withRouteData = loadData => Component => {
     }
 
     componentDidMount() {
-      loadData()
+      loadData(getState, getVariables && getVariables(this.props))
         .then(result => {
           this.setState({ data: result, loading: false })
         })

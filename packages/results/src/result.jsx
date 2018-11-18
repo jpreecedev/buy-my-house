@@ -1,13 +1,16 @@
 /* eslint-disable react/no-danger */
 import * as React from "react"
-import { Link } from "react-router-dom"
 
 import styles from "./styles.module.scss"
+
+function formatPrice(price) {
+  return `£${price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`
+}
 
 function Result({ listing }) {
   return (
     <div className="col-md-4">
-      <Link to={`/listing/${listing.listing_id}`} className={styles.link}>
+      <a href={`/listing/${listing.listing_id}`} className={styles.link}>
         <div className="card mb-4 box-shadow">
           <img
             className="card-img-top"
@@ -16,25 +19,19 @@ function Result({ listing }) {
             src={listing.image_url}
           />
           <div className="card-body">
+            <h5 className="card-title">{listing.displayable_address}</h5>
+            <p className="small">
+              <strong>{formatPrice(listing.price)}</strong>
+            </p>
             <p
               className="card-text"
               dangerouslySetInnerHTML={{
                 __html: `${listing.short_description.substring(0, 250)}...`
               }}
             />
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className="btn btn-sm btn-outline-secondary"
-                >
-                  View
-                </button>
-              </div>
-            </div>
           </div>
         </div>
-      </Link>
+      </a>
     </div>
   )
 }

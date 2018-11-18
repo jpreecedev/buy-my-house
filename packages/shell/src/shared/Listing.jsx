@@ -15,4 +15,6 @@ function Listing({ initialData: result }) {
   )
 }
 
-export default withRouteData(getState)(Listing)
+const getVariables = ({ match }) => ({ listingId: match.params.listingId })
+
+export default withRouteData(getState, getVariables)(Listing)
