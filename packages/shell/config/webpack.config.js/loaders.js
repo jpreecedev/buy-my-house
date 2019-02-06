@@ -4,6 +4,7 @@ const generateSourceMap = process.env.OMIT_SOURCEMAP !== "true"
 
 const scssRegex = /\.scss$/
 const scssModuleRegex = /\.module\.scss$/
+const scssInlineRegex = /\.inline\.scss$/
 
 const babelLoader = {
   test: /\.(js|jsx|mjs)$/,
@@ -35,9 +36,30 @@ const scssModuleLoaderClient = {
   ]
 }
 
+const scssInlineLoaderClient = {
+  test: scssInlineRegex,
+  use: [
+    require.resolve("css-hot-loader"),
+    {
+      loader: require.resolve("style-loader"),
+      options: {
+        insertInto: () => document.querySelector("body"),
+        insertAt: "top"
+      }
+    },
+    require.resolve("css-loader"),
+    {
+      loader: require.resolve("sass-loader"),
+      options: {
+        sourceMap: generateSourceMap
+      }
+    }
+  ]
+}
+
 const scssLoaderClient = {
   test: scssRegex,
-  exclude: scssModuleRegex,
+  exclude: [scssModuleRegex, scssInlineRegex],
   use: [
     require.resolve("css-hot-loader"),
     MiniCssExtractPlugin.loader,
@@ -72,9 +94,22 @@ const scssModuleLoaderServer = {
   ]
 }
 
+const scssInlineLoaderServer = {
+  test: scssInlineRegex,
+  use: [
+    require.resolve("css-loader/locals"),
+    {
+      loader: require.resolve("sass-loader"),
+      options: {
+        sourceMap: generateSourceMap
+      }
+    }
+  ]
+}
+
 const scssLoaderServer = {
   test: scssRegex,
-  exclude: scssModuleRegex,
+  exclude: [scssModuleRegex, scssInlineRegex],
   loader: [require.resolve("css-loader"), require.resolve("sass-loader")]
 }
 
@@ -124,6 +159,7 @@ const client = [
   {
     oneOf: [
       babelLoader,
+      scssInlineLoaderClient,
       scssModuleLoaderClient,
       scssLoaderClient,
       urlLoaderClient,
@@ -135,6 +171,7 @@ const server = [
   {
     oneOf: [
       babelLoader,
+      scssInlineLoaderServer,
       scssModuleLoaderServer,
       scssLoaderServer,
       urlLoaderServer,

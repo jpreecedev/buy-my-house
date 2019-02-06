@@ -2,6 +2,7 @@ import * as React from "react"
 import classNames from "classnames"
 import { hot } from "react-hot-loader"
 
+import "./styles.inline.scss"
 import styles from "./styles.module.scss"
 
 function Jumbotron({ small }) {
